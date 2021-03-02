@@ -19,9 +19,53 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qT3-jH-Agj">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="gCS-iP-XPt">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="93"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send to:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HUx-QB-8w7">
+                                            <rect key="frame" x="20" y="0.0" width="374" height="23"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search by location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n1b-gM-2wg" customClass="ImagedTextField" customModule="TreeTableDev" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="32.5" width="374" height="48"/>
+                                            <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="48" id="7CT-CH-Q1r"/>
+                                            </constraints>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                    <real key="value" value="8"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="icon_search"/>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                    <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="searchTextDidChange:" destination="0SX-yi-Hyn" eventType="editingChanged" id="vLS-ON-o0P"/>
+                                            </connections>
+                                        </textField>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="HUx-QB-8w7" secondAttribute="trailing" constant="20" id="9SZ-7J-1n7"/>
+                                        <constraint firstItem="n1b-gM-2wg" firstAttribute="leading" secondItem="gCS-iP-XPt" secondAttribute="leading" constant="20" id="Asb-Z6-ZsJ"/>
+                                        <constraint firstAttribute="trailing" secondItem="n1b-gM-2wg" secondAttribute="trailing" constant="20" id="Dp9-8l-COc"/>
+                                        <constraint firstItem="HUx-QB-8w7" firstAttribute="leading" secondItem="gCS-iP-XPt" secondAttribute="leading" constant="20" id="ILc-Ud-47T"/>
+                                        <constraint firstAttribute="bottom" secondItem="n1b-gM-2wg" secondAttribute="bottom" constant="12.5" id="atC-nw-jYJ"/>
+                                        <constraint firstItem="n1b-gM-2wg" firstAttribute="top" secondItem="HUx-QB-8w7" secondAttribute="bottom" constant="9.5" id="fcn-Gl-vVD"/>
+                                        <constraint firstItem="HUx-QB-8w7" firstAttribute="top" secondItem="gCS-iP-XPt" secondAttribute="top" id="uX9-7I-wnj"/>
+                                    </constraints>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TableTreeViewCell" id="G0K-7x-Vq7" customClass="TableTreeViewCell" customModule="TreeTableDev" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="56.5"/>
+                                        <rect key="frame" x="0.0" y="121" width="414" height="56.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="G0K-7x-Vq7" id="rGk-rE-ZmU">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="56.5"/>
@@ -91,6 +135,7 @@
                     </view>
                     <size key="freeformSize" width="414" height="896"/>
                     <connections>
+                        <outlet property="searchTextView" destination="n1b-gM-2wg" id="aaU-AS-Rl6"/>
                         <outlet property="tableView" destination="qT3-jH-Agj" id="VYj-jB-duK"/>
                     </connections>
                 </viewController>
@@ -102,8 +147,12 @@
     <resources>
         <image name="checkbox_unselected" width="24" height="24"/>
         <image name="dropdown_expanded" width="24" height="24"/>
+        <image name="icon_search" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -10,16 +10,17 @@ import UIKit
 class TableTreeViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchTextView: UITextField!
     
     private var flatNodes = FlatNodes()
     
     var nodes: [Node] {
-        flatNodes.nodes.filter { $0.isVisible }
+        flatNodes.nodes.filter { $0.isTopLevelNode || $0.isVisible && $0.name.starts(with: searchTextView.text ?? "") }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         getData()
     }
     
@@ -40,6 +41,11 @@ class TableTreeViewController: UIViewController {
             }
         }
         return results
+    }
+    
+    @IBAction func searchTextDidChange(_ sender: ImagedTextField) {
+        //TODO: RX debouncing
+        tableView.reloadSections([IndexPath(row: 0, section: 0).section], with: .fade)
     }
 }
 
@@ -70,8 +76,3 @@ extension TableTreeViewController: UITableViewDelegate {
         tableView.reloadSections([indexPath.section], with: .fade)
     }
 }
-
-
-
-
-

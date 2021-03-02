@@ -27,7 +27,7 @@ class TableTreeViewController: UIViewController {
         guard let path = Bundle.main.url(forResource: "data", withExtension: "json"),
               let nodeHierarchy: NodeHierarchy = path.decode() else { return }
         flatNodes.nodes = recursiveFlatmap(of: nodeHierarchy.items)
-//        tableView.reloadData()
+        tableView.reloadData()
     }
     
     func recursiveFlatmap(of nodes: [Node]) -> [Node] {
@@ -38,7 +38,6 @@ class TableTreeViewController: UIViewController {
             if !node.children.isEmpty {
                 results += recursiveFlatmap(of: node.children)
             }
-            
         }
         return results
     }
@@ -50,14 +49,22 @@ extension TableTreeViewController: UITableViewDataSource, TableViewable {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return buildCell(of: TableTreeViewCell.self, at: indexPath).setup(node: nodes[indexPath.row])
+        let cell = buildCell(of: TableTreeViewCell.self, at: indexPath).setup(node: nodes[indexPath.row])
+        return cell
     }
 }
 
 extension TableTreeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let node = nodes[indexPath.row]
+        guard node.hasChildren else { return }
         flatNodes.setVisibility(of: node, visible: !node.isExpanded)
-        tableView.reloadData()
+
+        tableView.reloadSections([indexPath.section], with: .fade)
     }
 }
+
+
+
+
+

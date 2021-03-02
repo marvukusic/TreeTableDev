@@ -8,14 +8,11 @@
 import UIKit
 
 @nonobjc extension UIViewController {
-    func add(_ child: UIViewController, frame: CGRect? = nil) {
+    func add(_ child: UIViewController, to view: UIView) {
         addChild(child)
 
-        if let frame = frame {
-            child.view.frame = frame
-        }
-
         view.addSubview(child.view)
+        child.view.pinEdges(to: view)
         child.didMove(toParent: self)
     }
 

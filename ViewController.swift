@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     
     private func loadNodeTreeView() {
         let vc = TableTreeViewController.instantiate(from: .TableTreeView)
-        add(vc, frame: nodeTreeContainer.frame)
+        add(vc, to: nodeTreeContainer)
     }
 }
 

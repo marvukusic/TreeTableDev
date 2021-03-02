@@ -25,7 +25,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="vXY-27-7SP" secondAttribute="bottom" id="Mh2-2o-Olz"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="vXY-27-7SP" secondAttribute="trailing" id="Rti-6G-TVY"/>
+                            <constraint firstAttribute="trailing" secondItem="vXY-27-7SP" secondAttribute="trailing" id="Rti-6G-TVY"/>
                             <constraint firstItem="vXY-27-7SP" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="150" id="lTF-FO-DDp"/>
                             <constraint firstItem="vXY-27-7SP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="m6c-mY-2Km"/>
                         </constraints>

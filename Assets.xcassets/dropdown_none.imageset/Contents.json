@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "Atoms_Icons_Dropdown_None.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "Atoms_Icons_Dropdown_None@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "Atoms_Icons_Dropdown_None@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

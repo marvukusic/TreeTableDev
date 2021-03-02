@@ -9,17 +9,22 @@ import UIKit
 
 class TableTreeViewCell: UITableViewCell, Identifiable {
 
+    @IBOutlet weak var indentConstraint: NSLayoutConstraint!
+    @IBOutlet weak var dropdownImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var nameLabelLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var checkboxImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
     }
     
     func setup(node: Node) -> Self {
+        dropdownImageView.image = node.dropdownImage
         nameLabel.text = node.name
-        nameLabelLeadingConstraint.constant = CGFloat((node.level ?? 0) * 50)
+        
+        let level = (node.level ?? 2) - 1
+        indentConstraint.constant = CGFloat(level) * 20
         return self
     }
 }

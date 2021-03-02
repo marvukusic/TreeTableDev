@@ -55,7 +55,7 @@ extension TableTreeViewController: UITableViewDataSource, TableViewable {
     }
     
     private func nodeSelectedAction(node: Node) {
-        flatNodes.setSelection(of: node, selected: !node.isSelected)
+        flatNodes.setSelection(of: node, selected: node.invertedSelection())
         
         tableView.reloadSections([IndexPath(row: 0, section: 0).section], with: .fade)
     }

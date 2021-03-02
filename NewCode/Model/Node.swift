@@ -31,7 +31,6 @@ class Node: Codable, SelfDescribing {
     
     private(set) var isVisible       = true
     private(set) var isExpanded      = true
-    private(set) var isSelected      = false
     private(set) var selectionType   = NodeSelection.none
 
     var hasChildren: Bool {
@@ -73,8 +72,11 @@ class Node: Codable, SelfDescribing {
     }
     
     func setSelection(type: NodeSelection) {
-        isSelected = selectionType == .full
         selectionType = type
+    }
+    
+    func invertedSelection() -> NodeSelection {
+        selectionType == .full ? .none : .full
     }
     
     func getName() -> String {

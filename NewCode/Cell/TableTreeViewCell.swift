@@ -21,10 +21,9 @@ class TableTreeViewCell: UITableViewCell, Identifiable {
     
     func setup(node: Node) -> Self {
         dropdownImageView.image = node.dropdownImage
-        nameLabel.text = node.name
+        nameLabel.text = node.getName()
         
-        let level = (node.level ?? 2) - 1
-        indentConstraint.constant = CGFloat(level) * 20
+        indentConstraint.constant = CGFloat(node.nodeLevel) * 20
         return self
     }
 }

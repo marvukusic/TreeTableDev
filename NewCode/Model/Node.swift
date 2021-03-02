@@ -8,6 +8,8 @@
 import UIKit
 
 class Node: Codable, SelfDescribing {
+    static let topNodeLevel = 2
+    
     var id              : Int?
     var nodeType        = NodeType.unknown
     var isFacility      = false
@@ -28,6 +30,15 @@ class Node: Codable, SelfDescribing {
 
     var hasChildren: Bool {
         !children.isEmpty
+    }
+    
+    var nodeLevel: Int {
+        guard let level = level, level > 1 else { return 0 }
+        return level - 1
+    }
+    
+    var isTopLevelNode: Bool {
+        level == Node.topNodeLevel
     }
     
     private enum CodingKeys: String, CodingKey {
@@ -51,7 +62,14 @@ class Node: Codable, SelfDescribing {
         isVisible = visible
     }
     
+    func getName() -> String {
+        //TODO: Localize
+        isTopLevelNode ? "All locations" : nodeName ?? ""
+    }
+    
     var dropdownImage: UIImage? {
+        //TODO: Tidy up a bit
+        guard !isTopLevelNode else { return UIImage(named: "icon_building") }
         guard hasChildren else { return UIImage(named: "dropdown_none") }
         return isExpanded ? UIImage(named: "dropdown_expanded") : UIImage(named: "dropdown_collapsed")
     }

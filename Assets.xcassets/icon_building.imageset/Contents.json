@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "ic_domain.png",
+      "filename" : "@1x_Icons_24px_Location.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "@2x_Icons_24px_Location.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "@3x_Icons_24px_Location.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
@@ -17,8 +19,5 @@
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "template-rendering-intent" : "template"
   }
 }

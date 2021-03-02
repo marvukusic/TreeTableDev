@@ -24,7 +24,7 @@ extension SelfDescribing {
         }
         str += label
         str += ": "
-        str += "\(value)"
+        str += "\(value)\n"
       }
     }
     str += ")"

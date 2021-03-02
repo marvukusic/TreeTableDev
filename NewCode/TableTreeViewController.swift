@@ -50,7 +50,14 @@ extension TableTreeViewController: UITableViewDataSource, TableViewable {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = buildCell(of: TableTreeViewCell.self, at: indexPath).setup(node: nodes[indexPath.row])
+        cell.nodeSelectedAction = nodeSelectedAction
         return cell
+    }
+    
+    private func nodeSelectedAction(node: Node) {
+        flatNodes.setSelection(of: node, selected: !node.isSelected)
+        
+        tableView.reloadSections([IndexPath(row: 0, section: 0).section], with: .fade)
     }
 }
 

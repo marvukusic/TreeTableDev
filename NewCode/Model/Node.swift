@@ -7,6 +7,10 @@
 
 import UIKit
 
+enum NodeSelection {
+    case none, partial, full
+}
+
 class Node: Codable, SelfDescribing {
     static let topNodeLevel = 2
     
@@ -25,8 +29,10 @@ class Node: Codable, SelfDescribing {
     var parentId        : Int?
     var parentName      : String?
     
-    var isVisible       = true
-    var isExpanded      = true
+    private(set) var isVisible       = true
+    private(set) var isExpanded      = true
+    private(set) var isSelected      = false
+    private(set) var selectionType   = NodeSelection.none
 
     var hasChildren: Bool {
         !children.isEmpty
@@ -62,6 +68,15 @@ class Node: Codable, SelfDescribing {
         isVisible = visible
     }
     
+    func setExpanded(_ expanded: Bool) {
+        isExpanded = expanded
+    }
+    
+    func setSelection(type: NodeSelection) {
+        isSelected = selectionType == .full
+        selectionType = type
+    }
+    
     func getName() -> String {
         //TODO: Localize
         isTopLevelNode ? "All locations" : nodeName ?? ""
@@ -72,6 +87,18 @@ class Node: Codable, SelfDescribing {
         guard !isTopLevelNode else { return UIImage(named: "icon_building") }
         guard hasChildren else { return UIImage(named: "dropdown_none") }
         return isExpanded ? UIImage(named: "dropdown_expanded") : UIImage(named: "dropdown_collapsed")
+    }
+    
+    var checkboxImage: UIImage? {
+        //TODO: Tidy up a bit
+        switch selectionType {
+        case .full:
+            return UIImage(named: "checkbox_selected")
+        case .partial:
+            return isTopLevelNode ? UIImage(named: "checkbox_dash") : UIImage(named: "checkbox_partially_selected")
+        case .none:
+            return UIImage(named: "checkbox_unselected")
+        }
     }
 }
 

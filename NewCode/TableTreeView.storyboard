@@ -40,33 +40,37 @@
                                                         <constraint firstAttribute="width" constant="24" id="n1J-9F-WcM"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkbox_unselected" translatesAutoresizingMaskIntoConstraints="NO" id="UzG-mS-x7i">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ul4-HB-K6i">
                                                     <rect key="frame" x="376" y="19.5" width="18" height="18"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="18" id="adV-hR-yYV"/>
-                                                        <constraint firstAttribute="height" constant="18" id="lGs-oF-yyY"/>
+                                                        <constraint firstAttribute="width" constant="18" id="fEd-WQ-TMa"/>
+                                                        <constraint firstAttribute="height" constant="18" id="nHw-9W-3oC"/>
                                                     </constraints>
-                                                </imageView>
+                                                    <state key="normal" image="checkbox_unselected"/>
+                                                    <connections>
+                                                        <action selector="selectAction:" destination="G0K-7x-Vq7" eventType="touchUpInside" id="2fI-fO-GDC"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="wju-4j-UAs" firstAttribute="top" relation="greaterThanOrEqual" secondItem="rGk-rE-ZmU" secondAttribute="topMargin" constant="5" id="1PN-Fe-XXy"/>
                                                 <constraint firstItem="wju-4j-UAs" firstAttribute="leading" secondItem="rGk-rE-ZmU" secondAttribute="leading" constant="20" id="3yM-Jc-h3z"/>
+                                                <constraint firstItem="Ul4-HB-K6i" firstAttribute="leading" secondItem="BUH-PQ-lHC" secondAttribute="trailing" constant="10" id="9HX-nH-SuW"/>
                                                 <constraint firstItem="BUH-PQ-lHC" firstAttribute="leading" secondItem="wju-4j-UAs" secondAttribute="trailing" constant="20" id="DIL-pc-mBU"/>
-                                                <constraint firstItem="UzG-mS-x7i" firstAttribute="centerY" secondItem="rGk-rE-ZmU" secondAttribute="centerY" id="bL7-SE-YIL"/>
                                                 <constraint firstItem="BUH-PQ-lHC" firstAttribute="bottom" secondItem="rGk-rE-ZmU" secondAttribute="bottomMargin" id="bXm-xa-k72"/>
+                                                <constraint firstItem="Ul4-HB-K6i" firstAttribute="centerY" secondItem="rGk-rE-ZmU" secondAttribute="centerY" id="cJy-V0-nuh"/>
                                                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="wju-4j-UAs" secondAttribute="bottom" constant="5" id="coI-x8-l1x"/>
                                                 <constraint firstItem="BUH-PQ-lHC" firstAttribute="top" secondItem="rGk-rE-ZmU" secondAttribute="topMargin" id="fku-sH-mKd"/>
-                                                <constraint firstAttribute="trailing" secondItem="UzG-mS-x7i" secondAttribute="trailing" constant="20" id="ip4-Fy-Qtb"/>
                                                 <constraint firstItem="wju-4j-UAs" firstAttribute="centerY" secondItem="rGk-rE-ZmU" secondAttribute="centerY" id="lsm-4S-qaI"/>
-                                                <constraint firstItem="UzG-mS-x7i" firstAttribute="leading" secondItem="BUH-PQ-lHC" secondAttribute="trailing" constant="10" id="tiW-yH-CQg"/>
+                                                <constraint firstItem="Ul4-HB-K6i" firstAttribute="trailing" secondItem="rGk-rE-ZmU" secondAttribute="trailing" constant="-20" id="wwe-U6-oLZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
-                                            <outlet property="checkboxImageView" destination="UzG-mS-x7i" id="5Fd-I7-qWt"/>
                                             <outlet property="dropdownImageView" destination="wju-4j-UAs" id="Bqv-MT-7iX"/>
                                             <outlet property="indentConstraint" destination="3yM-Jc-h3z" id="RbJ-op-cWe"/>
                                             <outlet property="nameLabel" destination="BUH-PQ-lHC" id="tMu-FJ-qOx"/>
+                                            <outlet property="selectButton" destination="Ul4-HB-K6i" id="baZ-Od-3ds"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

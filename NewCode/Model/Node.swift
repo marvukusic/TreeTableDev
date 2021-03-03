@@ -38,6 +38,16 @@ class Node: Codable, SelfDescribing {
         !children.isEmpty
     }
     
+    var childrenSelectionType: NodeSelection {
+        if children.filter({$0.selectionType == .none}).count == children.count {
+            return .none
+        } else if children.filter({$0.selectionType == .full}).count == children.count {
+            return .full
+        } else {
+            return .partial
+        }
+    }
+    
     var nodeLevel: Int {
         guard let level = level, level > 1 else { return 0 }
         return level - 1

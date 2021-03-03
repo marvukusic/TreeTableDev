@@ -11,7 +11,7 @@ enum NodeSelection {
     case none, partial, full
 }
 
-class Node: Codable, SelfDescribing {
+class Node: Codable {
     static let topNodeLevel = 2
     
     var id              : Int?

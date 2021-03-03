@@ -14,7 +14,9 @@ class TableTreeViewController: UIViewController {
     
     private var flatNodes = FlatNodes()
     
-    var nodes: [Node] {
+    private var firstRun = true
+    
+    private var nodes: [Node] {
         flatNodes.nodes.filter {
             $0.isTopLevelNode ||
                 ($0.isVisible && $0.isSearched)
@@ -66,6 +68,18 @@ extension TableTreeViewController: UITableViewDataSource, TableViewable {
     private func nodeSelectedAction(node: Node) {
         flatNodes.setSelection(of: node, selected: node.invertedSelection())
         tableView.reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard firstRun else { return }
+        let animation = AnimationFactory.makeMoveUpWithFade(rowHeight: cell.frame.height, duration: 0.5, delayFactor: 0.05)
+        let animator = Animator(animation: animation)
+        animator.animate(cell: cell, at: indexPath, in: tableView)
+        
+        let lastCell = tableView.indexPathsForVisibleRows?.last == indexPath
+        if lastCell {
+            firstRun = false
+        }
     }
 }
 

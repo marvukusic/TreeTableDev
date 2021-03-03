@@ -21,6 +21,47 @@ class FlatNodes {
         }
     }
     
+    func findSearchedNodes(searchText: String?) {
+        guard let searchText = searchText, searchText != "" else {
+            setNodesSearchedFlag(as: true)
+            return
+        }
+        
+        setNodesSearchedFlag(as: false)
+        let searchedNodes = nodes.filter { $0.name.contains(searchText) }
+        searchedNodes.forEach { searchedNode in
+            setChildrenAsSearched(of: searchedNode)
+            setParentAsSearched(of: searchedNode)
+        }
+    }
+    
+    private func setChildrenAsSearched(of node: Node) {
+        setAsSearched(node)
+        for child in findChildren(of: node) {
+            !child.children.isEmpty ?
+                setChildrenAsSearched(of: child) :
+                setAsSearched(child)
+        }
+    }
+    
+    private func setParentAsSearched(of node: Node) {
+        if let parent = findParent(of: node) {
+            setAsSearched(parent)
+            setParentAsSearched(of: parent)
+        }
+    }
+    
+    private func setNodesSearchedFlag(as searched: Bool) {
+        nodes.forEach { $0.setIsSearched(searched) }
+    }
+    
+    private func setAsSearched(_ node: Node) {
+        node.setIsSearched(true)
+    }
+    
+    
+    //////////
+    
     func setSelection(of node: Node, selected: NodeSelection) {
         selectNode(node, selectionType: selected)
         selectChildren(of: node, selected: selected)

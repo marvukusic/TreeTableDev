@@ -31,6 +31,7 @@ class Node: Codable, SelfDescribing {
     
     private(set) var isVisible       = true
     private(set) var isExpanded      = true
+    private(set) var isSearched      = true
     private(set) var selectionType   = NodeSelection.none
 
     var hasChildren: Bool {
@@ -69,6 +70,10 @@ class Node: Codable, SelfDescribing {
     
     func setExpanded(_ expanded: Bool) {
         isExpanded = expanded
+    }
+    
+    func setIsSearched(_ searched: Bool) {
+        isSearched = searched
     }
     
     func setSelection(type: NodeSelection) {

@@ -48,12 +48,7 @@ class TableTreeViewController: UIViewController {
     
     @IBAction func searchTextDidChange(_ sender: ImagedTextField) {
         //TODO: RX debouncing
-        flatNodes.findSearchedNodes(searchText: searchTextView.text)
-        reloadTableView()
-    }
-    
-    private func reloadTableView() {
-        tableView.reloadSections([IndexPath(row: 0, section: 0).section], with: .fade)
+        reloadTable(with: flatNodes.findSearchedNodes(searchText: searchTextView.text))
     }
 }
 
@@ -70,8 +65,7 @@ extension TableTreeViewController: UITableViewDataSource, TableViewable {
     
     private func nodeSelectedAction(node: Node) {
         flatNodes.setSelection(of: node, selected: node.invertedSelection())
-        
-        reloadTableView()
+        tableView.reloadData()
     }
 }
 
@@ -79,8 +73,13 @@ extension TableTreeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let node = nodes[indexPath.row]
         guard node.hasChildren else { return }
-        flatNodes.setVisibility(of: node, visible: !node.isExpanded)
-
-        reloadTableView()
+        
+        reloadTable(with: flatNodes.setVisibility(of: node, visible: !node.isExpanded))
+    }
+    
+    private func reloadTable(with closure: @autoclosure () -> Void) {
+        let oldNodes = nodes
+        closure()
+        tableView.reloadChanges(from: oldNodes, to: nodes)
     }
 }

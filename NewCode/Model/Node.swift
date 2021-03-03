@@ -117,10 +117,23 @@ class Node: Codable, SelfDescribing {
             return UIImage(named: "checkbox_unselected")
         }
     }
+    
+    enum NodeType: String, Codable {
+        case organizationStructure = "ORGANIZATION_STRUCTURE"
+        case custom = "CUSTOM"
+        case unknown = ""
+    }
 }
 
-enum NodeType: String, Codable {
-    case organizationStructure = "ORGANIZATION_STRUCTURE"
-    case custom = "CUSTOM"
-    case unknown = ""
+extension Node: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(ObjectIdentifier(self))
+        hasher.combine(selectionType)
+    }
+    
+    static func == (lhs: Node, rhs: Node) -> Bool {
+        ObjectIdentifier(lhs) == ObjectIdentifier(rhs) && lhs.selectionType == rhs.selectionType
+    }
 }
+
+
